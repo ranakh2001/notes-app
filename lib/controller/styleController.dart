@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +11,7 @@ class StyleController extends GetxController {
   Color bgColor = const Color(0xFFe2e2ff);
   Color mainColor = const Color(0xff000633);
   Color accentColor = const Color(0xff0065ff);
+
 
   // cards colors
   List<Color> cardsColor = [

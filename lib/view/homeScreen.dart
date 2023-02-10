@@ -5,14 +5,15 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/styleController.dart';
+import 'package:flutter_application_1/view/addNewNote.dart';
 import 'package:flutter_application_1/view/noteCardWidget.dart';
+import 'package:flutter_application_1/view/noteReaderScreen.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   StyleController styleController = Get.put(StyleController());
-  StreamController streamController = Get.put(StreamController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,10 +57,12 @@ class HomeScreen extends StatelessWidget {
                     if (snapshot.hasData) {
                       return GridView(
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2),
                           children: snapshot.data!.docs
-                              .map((note) => noteCard(() {}, note))
+                              .map((note) => noteCard(() {
+                                    Get.to(NoteReaderScreen(doc: note));
+                                  }, note))
                               .toList());
                     } else {
                       return Text(
@@ -76,7 +79,9 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(AddNewNote());
+        },
         label: const Text("Add Note"),
         icon: const Icon(Icons.add),
       ),

@@ -1,15 +1,18 @@
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/controller/styleController.dart';
 import 'package:get/get.dart';
+
+import 'package:flutter_application_1/controller/styleController.dart';
 
 StyleController styleController = Get.find();
 Widget noteCard(Function()? onTap, QueryDocumentSnapshot doc) {
   return InkWell(
     onTap: onTap,
     child: Container(
-      padding: EdgeInsets.all(16.0),
-      margin: EdgeInsets.all(8.0),
+      padding:const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
           color: styleController.cardsColor[doc['color_id']],
           borderRadius: BorderRadius.circular(8.0)),
